@@ -1,0 +1,46 @@
+﻿<Page x:Class="CourseWork2.UserOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseWork2"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="UserOrder" Background="#F4F4F4">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок сторінки -->
+        <TextBlock Text="Ваші замовлення"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#333"
+                   HorizontalAlignment="Center"
+                   Margin="10"/>
+
+        <!-- Таблиця замовлень -->
+        <DataGrid x:Name="OrdersDataGrid" AutoGenerateColumns="True" Margin="10" />
+
+        <!-- Панель кнопок -->
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Grid.Row="2"
+                    Margin="5">
+            <Button Content="Видалити замовлення" Width="120" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Click="DeleteOrderButton_Click" />
+
+            <Button Content="Оновити список"
+                    Click="RefreshOrders_Click"
+                    Background="#2196F3"
+                    Foreground="White"
+                    Padding="8,4"
+                    Margin="5"
+                    Width="150"/>
+        </StackPanel>
+    </Grid>
+</Page>
