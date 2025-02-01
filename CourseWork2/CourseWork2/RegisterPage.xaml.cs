@@ -3,6 +3,7 @@ using System.Windows;
 using CourseWork2;
 using System.Windows.Controls;
 using Npgsql;
+using System.Linq;
 
 namespace CourseWork2
 {
@@ -15,16 +16,24 @@ namespace CourseWork2
 
         private void Button_Reg_Click(object sender, RoutedEventArgs e)
         {
-            string fullName = textBoxFullName.Text.Trim();
-            string email = textBoxEmail.Text.Trim();
-            string password = passwordBox.Password.Trim();
-            string phone = phoneBox.Text.Trim();
+            string[] inputs =
+            {
+                textBoxFullName.Text.Trim(),
+                textBoxEmail.Text.Trim(),
+                passwordBox.Password.Trim(),
+                phoneBox.Text.Trim()
+            };
 
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(phone))
+            if (inputs.Any(string.IsNullOrEmpty))
             {
                 MessageBox.Show("All fields must be filled!");
                 return;
             }
+
+            string fullName = inputs[0];
+            string email = inputs[1];
+            string password = inputs[2];
+            string phone = inputs[3];
 
             try
             {
@@ -37,7 +46,7 @@ namespace CourseWork2
                 {
                     command.Parameters.AddWithValue("@fullName", fullName);
                     command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", password); 
+                    command.Parameters.AddWithValue("@Password", password);
                     command.Parameters.AddWithValue("@Phone", phone);
 
                     int result = command.ExecuteNonQuery();
@@ -57,5 +66,6 @@ namespace CourseWork2
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
     }
 }
