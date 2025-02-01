@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace CourseWork2
 {
-    public static class OrderManager
+    public class OrderManager
     {
-        private static List<Order> Orders = new List<Order>(); 
+        private List<Order> Orders = new List<Order>();
 
-        public static void AddOrder(Order order)
+        public void AddOrder(Order order)
         {
             Orders.Add(order);
         }
 
-        public static List<Order> GetOrders()
+        public List<Order> GetOrders()
         {
-            return Orders;
+            return new List<Order>(Orders); // Повертаємо копію, щоб уникнути модифікації ззовні
         }
-        public static void RemoveOrder(Order order)
+
+        public void RemoveOrder(Order order)
         {
             Orders.Remove(order);
         }
     }
+
 }
