@@ -8,10 +8,10 @@ namespace CourseWork2
 {
     public class OrderItem
     {
-        public int ProductId { get; set; } // Ідентифікатор товару
-        public string ProductName { get; set; } // Назва товару
-        public double Price { get; set; } // Ціна за одиницю
-        public int Quantity { get; set; } // Кількість замовлених одиниць
-        public double Total => Price * Quantity; // Загальна вартість для цього товару
+        public int ProductId { get; set; } 
+        public string ProductName { get; set; } 
+        public double Price { get; set; } 
+        public int Quantity { get; set; } 
+        public double Total => Price * Quantity; 
     }
 }
