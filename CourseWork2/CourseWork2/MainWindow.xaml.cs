@@ -44,7 +44,6 @@ namespace CourseWork2
                         int userId = Convert.ToInt32(result);
                         MessageBox.Show("Login successful!");
 
-                        // Передаємо userId у ProductsPage
                         ProductsPage productsPage = new ProductsPage(userId);
                         MainFrame.Navigate(productsPage);
                     }

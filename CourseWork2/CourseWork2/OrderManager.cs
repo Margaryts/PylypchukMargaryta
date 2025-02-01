@@ -8,7 +8,7 @@ namespace CourseWork2
 {
     public static class OrderManager
     {
-        private static List<Order> Orders = new List<Order>();  // Список для зберігання замовлень
+        private static List<Order> Orders = new List<Order>(); 
 
         public static void AddOrder(Order order)
         {

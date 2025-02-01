@@ -61,7 +61,7 @@ namespace CourseWork2 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CourseWork2;V1.0.0.0;component/userorder.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CourseWork2;component/userorder.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\UserOrder.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

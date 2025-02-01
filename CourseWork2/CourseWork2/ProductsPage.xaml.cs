@@ -48,33 +48,42 @@ namespace CourseWork2
         {
             try
             {
-                string query = @"
-                    SELECT product_id AS product_id, 
-                           product_name AS Назва, 
-                           brand AS Бренд, 
-                           price AS Ціна, 
-                           stock_quantity AS Кількість, 
-                           description AS Опис
-                    FROM products
-                    WHERE category_name = @categoryName";
-
-                using (NpgsqlCommand command = new NpgsqlCommand(query, db.GetConnection()))
-                {
-                    command.Parameters.AddWithValue("@categoryName", categoryName);
-
-                    DataTable products = new DataTable();
-                    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
-                    adapter.Fill(products);
-
-                    ProductsDataGrid.ItemsSource = products.DefaultView;
-
-                    ClearProductDetails();
-                }
+                DataTable products = GetProductsByCategory(categoryName);
+                DisplayProducts(products);
+                ClearProductDetails();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Помилка завантаження товарів: " + ex.Message);
             }
+        }
+
+        private DataTable GetProductsByCategory(string categoryName)
+        {
+            string query = @"
+        SELECT product_id AS product_id, 
+               product_name AS Назва, 
+               brand AS Бренд, 
+               price AS Ціна, 
+               stock_quantity AS Кількість, 
+               description AS Опис
+        FROM products
+        WHERE category_name = @categoryName";
+
+            using (var command = new NpgsqlCommand(query, db.GetConnection()))
+            {
+                command.Parameters.AddWithValue("@categoryName", categoryName);
+
+                DataTable products = new DataTable();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(products);
+                return products;
+            }
+        }
+
+        private void DisplayProducts(DataTable products)
+        {
+            ProductsDataGrid.ItemsSource = products.DefaultView;
         }
 
         private void ProductsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
